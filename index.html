@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Edita Labs</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="app-wrapper">
+        <div class="app">
+            <iframe class="preview" id="preview"></iframe>
+            <!--  -->
+            <div class="panel">
+                <div class="tabs">
+                    <div class="glass"></div>
+                    <div class="btn active" data-tab="html">HTML</div>
+                    <div class="btn" data-tab="css">CSS</div>
+                    <div class="btn" data-tab="js">JS</div>
+                </div>
+                <!--  -->
+                <div class="edita">
+                    <div class="line-numbers"></div>
+                    <!--  -->
+                    <div class="edita-grid">
+                        <pre class="clr-ing"></pre>
+                        <!--  -->
+                        <textarea id="html" class="txt-area active"></textarea>
+                        <textarea id="css" class="txt-area"></textarea>
+                        <textarea id="js" class="txt-area"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

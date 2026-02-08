@@ -1,0 +1,338 @@
+@charset "utf-8";
+
+/* FONT */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+:root {
+    --c-glass: #aaa;
+    --c-pv: #e8e8e8;
+    --c-edit: #222;
+
+    --c-light: #f2f3f4;
+    --c-dark: #222;
+
+    --c-3: #333;
+    --c-5: #555;
+    --c-8: #888;
+
+    --i-logo: url("../img/logo_clrz_222.svg") no-repeat center / contain;
+
+    --f-modern: "Figtree", sans-serif;
+    --f-code: 'Fira Code', monospace;
+
+    --glass-reflex-dark: 1;
+    --glass-reflex-light: 1;
+
+    --saturation: 150%;
+
+    --glass-bg: color-mix(in srgb, var(--c-glass) 12%, transparent);
+
+    --glass-effect:
+        inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent),
+        inset 1.8px 3px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent),
+        inset -2px -2px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent),
+        inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent),
+        inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent),
+        inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent),
+        inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent),
+        inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
+        0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
+        0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --c-light: #222 !important;
+        --c-dark: #f2f3f4 !important;
+
+        --i-logo: url("../img/logo_clrz_f234.svg") no-repeat center / contain;
+    }
+}
+
+html,
+body {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    overflow: hidden;
+}
+
+body {
+    font-family: var(--f-modern);
+    /* font-optical-sizing: auto; */
+    font-weight: 800;
+    font-style: normal;
+
+    background: var(--c-light);
+    color: var(--c-dark);
+
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+a:hover {
+    opacity: .8;
+}
+
+/* START */
+.app-wrapper {
+    padding: 5vw;
+    width: 100%;
+    height: 100vh;
+}
+
+.app {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .5rem;
+}
+
+/* iframe */
+.preview {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    border: 1px solid var(--c-glass);
+    background: var(--c-pv);
+}
+
+.panel {
+    height: 100%;
+
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: .5rem;
+}
+
+/* tabs */
+.tabs {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+}
+
+.btn {
+    padding: 1rem 4rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+
+    cursor: pointer;
+    user-select: none;
+    z-index: 2;
+}
+
+/* liquid glass */
+.glass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 1rem;
+
+    background: var(--glass-bg);
+    backdrop-filter: blur(1px) saturate(var(--saturation));
+    -webkit-backdrop-filter: blur(1px) saturate(var(--saturation));
+    box-shadow: var(--glass-effect);
+    transition: all 1s ease-out;
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+.edita {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: var(--c-edit);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: inset 0 0 .5rem rgba(0, 0, 0, .3);
+    position: relative;
+    font-family: var(--f-code);
+}
+
+.edita-grid {
+    flex: 1;
+    position: relative;
+    max-height: 100vh;
+}
+
+.clr-ing {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+    color: transparent;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    line-height: 1.4em;
+    padding: 0.5rem;
+}
+
+/* <> */
+.hl-tag {
+    color: #569CD6;
+}
+
+/* class / id */
+.hl-attr {
+    color: #9CDCFE;
+}
+
+/* "" */
+.hl-string {
+    color: #CE9178;
+}
+
+.line-numbers {
+    background: var(--c-edit);
+    color: var(--c-8);
+
+    padding: 1rem .5rem;
+
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+
+    text-align: right;
+    user-select: none;
+    overflow: hidden;
+}
+
+.line-numbers span {
+    display: block;
+    width: 2.5rem;
+    height: 1.4em;
+
+    font-size: 1rem;
+}
+
+.edita {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: var(--c-edit);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: inset 0 0 .5rem rgba(0, 0, 0, .3);
+    position: relative;
+    font-family: var(--f-code);
+}
+
+.edita-grid {
+    flex: 1;
+    position: relative;
+    max-height: 100vh;
+}
+
+.clr-ing {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+    color: transparent;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    line-height: 1.4em;
+    padding: 0.5rem;
+}
+
+/* <> */
+.clr-tag {
+    color: #569CD6;
+}
+
+/* class / id */
+.clr-attr {
+    color: #9CDCFE;
+}
+
+/* "" */
+.clr-string {
+    color: #CE9178;
+}
+
+.txt-area {
+    flex: 1;
+    height: 100%;
+
+    padding: 1rem .5rem;
+    border-radius: 1rem;
+
+    background: transparent;
+    color: var(--c-glass);
+
+    font-size: 1rem;
+    font-family: var(--f-code);
+    line-height: 1.4;
+
+    border: none;
+    resize: none;
+    outline: none;
+    overflow-y: auto;
+    display: none;
+}
+
+.txt-area.active {
+    display: block;
+}
+
+/* スクロールバーもVSCode風に */
+.txt-area::-webkit-scrollbar {
+    width: .5rem;
+}
+
+.txt-area::-webkit-scrollbar-track {
+    background: var(--c-3);
+}
+
+.txt-area::-webkit-scrollbar-thumb {
+    background: var(--c-5);
+    border-radius: 5px;
+}
+
+.txt-area::-webkit-scrollbar-thumb:hover {
+    background: var(--c-8);
+}
+
+@media (max-width: 900px) and (orientation: portrait) {
+    .app {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+    }
+}
