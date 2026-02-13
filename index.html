@@ -10,32 +10,32 @@
 </head>
 
 <body>
-    <div class="app-wrapper">
-        <div class="app">
-            <iframe class="preview" id="preview"></iframe>
-            <!--  -->
-            <div class="panel">
-                <div class="tabs">
-                    <div class="glass"></div>
-                    <div class="btn active" data-tab="html">HTML</div>
-                    <div class="btn" data-tab="css">CSS</div>
-                    <div class="btn" data-tab="js">JS</div>
-                </div>
+    <main class="main">
+        <div class="inner">
+            <div class="app">
+                <iframe class="preview" id="preview"></iframe>
                 <!--  -->
-                <div class="edita">
-                    <div class="line-numbers"></div>
+                <div class="panel">
+                    <div class="tabs">
+                        <div class="glass"></div>
+                        <div class="btn active" data-tab="html">HTML</div>
+                        <div class="btn" data-tab="css">CSS</div>
+                        <div class="btn" data-tab="js">JS</div>
+                    </div>
                     <!--  -->
-                    <div class="edita-grid">
-                        <pre class="clr-ing"></pre>
-                        <!--  -->
-                        <textarea id="html" class="txt-area active"></textarea>
-                        <textarea id="css" class="txt-area"></textarea>
-                        <textarea id="js" class="txt-area"></textarea>
+                    <div class="edita">
+                        <div class="edita-grid">
+                            <div class="line-numbers"></div>
+                            <!--  -->
+                            <textarea id="html" class="txt-area active"></textarea>
+                            <textarea id="css" class="txt-area"></textarea>
+                            <textarea id="js" class="txt-area"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="js/script.js"></script>
 </body>
